@@ -1,0 +1,23 @@
+Source: pybricks-micropython3
+Priority: optional
+Maintainer: David Lechner <david@pybricks.com>
+Build-Depends: debhelper (>= 10.0.0),  libffi-dev, libgrx-3.0-dev, libi2c-dev,
+    libudev-dev, uthash-dev, pkg-config, python3
+Standards-Version: 3.9.8
+Section: embedded
+Homepage: http://pybricks.com
+Vcs-Git: https://github.com/pybricks/pybricks-micropython.git
+Vcs-Browser: https://github.com/pybricks/pybricks-micropython
+
+Package: pybricks-micropython3
+Architecture: linux-any
+Depends: ${shlibs:Depends}, ${misc:Depends}, alsa-utils, espeak,
+    ev3dev-media (>= 1.2.0), libmagickwand-6.q16-3
+Description: Pybricks MicroPython runtime for ev3dev v3.x
+
+Package: pybricks-mpy-cross3
+Architecture: linux-any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: MicroPython cross-build tool targeting pybricks-micropython3
+ .
+ This package contains the pybricks-mpy-cross3 tool.

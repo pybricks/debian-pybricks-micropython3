@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	if [ ! -L micropython/lib/axtls ]; then \
+		[ -d micropython/lib/axtls ] && rmdir micropython/lib/axtls; \
+		ln -sr axtls micropython/lib/; \
+	fi
+	if [ ! -L micropython/lib/berkeley-db-1.xx ]; then \
+		[ -d micropython/lib/berkeley-db-1.xx ] && rmdir micropython/lib/berkeley-db-1.xx; \
+		ln -sr berkeley-db micropython/lib/berkeley-db-1.xx; \
+	fi
+	if [ ! -L micropython/lib/micropython-lib ]; then \
+		[ -d micropython/lib/micropython-lib ] && rmdir micropython/lib/micropython-lib; \
+		ln -sr micropython-lib micropython/lib/; \
+	fi
+	make -C micropython/mpy-cross
+	make -C bricks/ev3dev
+
+override_dh_auto_install:
+	install -D micropython/mpy-cross/build/mpy-cross debian/tmp/usr/bin/pybricks-mpy-cross3
+	install -D bricks/ev3dev/build/pybricks-micropython debian/tmp/usr/bin/pybricks-micropython3

@@ -1,0 +1,908 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Files-Excluded: .*
+    poetry.*
+    pyproject.toml
+    test-*
+    bricks/_common_stm32/*
+    bricks/cityhub/*
+    bricks/debug/*
+    bricks/essentialhub/*
+    bricks/ev3rt/*
+    bricks/movehub/*
+    bricks/nxt/*
+    bricks/primehub/*
+    bricks/technichub/*
+    bricks/virtualhub/*
+    lib/ble5stack/*
+    lib/BlueNRG-MS/*
+    lib/lsm6ds3tr_c_STdC/*
+    lib/pbio/platform/city_hub/*
+    lib/pbio/platform/debug/*
+    lib/pbio/platform/essential_hub/*
+    lib/pbio/platform/ev3rt/*
+    lib/pbio/platform/move_hub/*
+    lib/pbio/platform/nxt/*
+    lib/pbio/platform/prime_hub/*
+    lib/pbio/platform/technic_hub/*
+    lib/pbio/platform/test/*
+    lib/pbio/platform/virtual_hub/*
+    lib/STM32_USB_Device_Library/*
+    npm/*
+    tests/*
+    tools/virtual-hub-animator/*
+Files-Excluded-micropython: .*
+    docs/*
+    drivers/*
+    examples/*
+    lib/cmsis/*
+    lib/littlefs/*
+    lib/mbedtls_errors/*
+    lib/oofatfs/*
+    lib/tinytest/*
+    logo/*
+    ports/bare-arm/*
+    ports/cc3200/*
+    ports/embed/*
+    ports/esp32/*
+    ports/esp8266/*
+    ports/mimxrt/*
+    ports/minimal/*
+    ports/nrf/*
+    ports/pic16bit/*
+    ports/powerpc/*
+    ports/qemu-arm/*
+    ports/renesas-ra/*
+    ports/rp2/*
+    ports/samd/*
+    ports/stm32/*
+    ports/teensy/*
+    ports/webassembly/*
+    ports/windows/*
+    ports/zephyr/*
+    tests/*
+
+Files: debian/*
+Copyright: 2023 David Lechner <david@pybricks.com>
+License: GPL-3.0+
+
+License: GPL-3.0+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
+
+
+Files: micropython/extmod/crypto-algorithms/sha256.c
+ extmod/crypto-algorithms/sha256.h
+Copyright: NONE
+License: UNKNOWN
+ FIXME
+
+Files: micropython/extmod/machine_pinbase.c
+ extmod/machine_pinbase.h
+ extmod/machine_signal.c
+ extmod/machine_signal.h
+ extmod/modbtree.c
+ extmod/modubinascii.c
+ extmod/modubinascii.h
+ extmod/moductypes.c
+ extmod/moduhashlib.c
+ extmod/modurandom.c
+ extmod/modure.c
+ extmod/modussl_axtls.c
+ extmod/moduzlib.c
+ extmod/modwebrepl.c
+ extmod/modwebsocket.c
+ extmod/virtpin.c
+ extmod/virtpin.h
+Copyright: 2014-2019, Paul Sokolovsky
+License: Expat
+
+Files: micropython/extmod/misc.h
+ extmod/modutimeq.c
+ extmod/uos_dupterm.c
+ extmod/utime_mphal.c
+ extmod/utime_mphal.h
+ extmod/vfs_fat.c
+Copyright: 2013-2016, Damien P. George
+  2016-2017, Paul Sokolovsky
+License: Expat
+
+Files: micropython/extmod/moducryptolib.c
+Copyright: 2017-2018, Paul Sokolovsky
+  2018, Yonatan Goldschmidt
+License: Expat
+
+Files: micropython/extmod/modussl_mbedtls.c
+Copyright: 2016, Linaro Ltd.
+  2019, Paul Sokolovsky
+License: Expat
+
+Files: micropython/extmod/modlwip.c
+Copyright: 2013-2014, Damien P. George
+  2015, Galen Hazelwood
+  2015-2017, Paul Sokolovsky
+License: Expat
+
+Files: micropython/extmod/re1.5/compilecode.c
+ extmod/re1.5/dumpcode.c
+Copyright: 2014, Paul Sokolovsky.
+License: UNKNOWN
+ FIXME
+
+Files: micropython/extmod/re1.5/re1.5.h
+Copyright: 2007-2009, Russ Cox.
+  2014, Paul Sokolovsky.
+License: UNKNOWN
+ FIXME
+
+Files: micropython/extmod/re1.5/recursiveloop.c
+Copyright: 2007-2009, Russ Cox.
+License: UNKNOWN
+ FIXME
+
+Files: micropython/extmod/uzlib/adler32.c
+ extmod/uzlib/crc32.c
+Copyright: 1995-1998, Jean-loup Gailly and Mark Adler
+  1998-2003, Joergen Ibsen / Jibz
+License: Zlib
+
+Files: micropython/extmod/uzlib/tinfgzip.c
+ extmod/uzlib/tinf.h
+ extmod/uzlib/tinflate.c
+ extmod/uzlib/tinfzlib.c
+Copyright: 2003, Joergen Ibsen / Jibz
+  2014-2016, Paul Sokolovsky
+License: Zlib
+
+Files: micropython/extmod/vfs_fat_diskio.c
+Copyright: 2013-2014, Damien P. George
+  2013, ChaN
+License: Expat and FatFs
+
+Files: axtls/*
+Copyright: 2007-2017 Cameron Rich
+License: BSD-3-clause
+
+Files: micropython/lib/axtls/config/scripts/config/*
+Copyright: 2002, Roman Zippel <zippel@linux-m68k.org>
+License: GPL-2
+
+Files: micropython/lib/axtls/config/scripts/config/lxdialog/*
+Copyright: NONE
+License: GPL-2+
+
+Files: axtls/config/scripts/config/zconf.tab.h_shipped
+Copyright: 1984, 1989-1990, 2000-2002, Free Software Foundation, Inc.
+License: GPL-2+
+
+Files: axtls/config/Rules.mak
+ lib/axtls/config/scripts/config/Makefile
+Copyright: 1999-2005, Erik Andersen <andersen@codepoet.org>
+License: GPL-2
+
+Files: axtls/www/index.html
+Copyright: 2004-2006, Osmosoft Limited
+License: BSD-3-clause
+
+Files: axtls/axtlswrap/axtlswrap.c
+Copyright: 2009, Steve Bennett
+License: BSD-3-clause
+
+Files: axtls/config/scripts/config/mkconfigs
+Copyright: 2002, Al Stone <ahs3 at fc.hp.com>
+  2002, Hewlett-Packard Company
+  2002, Khalid Aziz <khalid_aziz at hp.com>
+  2002, Randy Dunlap <rddunlap at osdl.org>
+License: GPL-2+
+
+Files: axtls/config/scripts/config/zconf.tab.c_shipped
+Copyright: 1984, 1989-1990, 2000-2003, Free Software Foundation, Inc.
+  2002, Roman Zippel <zippel@linux-m68k.org>
+License: GPL-2+
+
+Files: axtls/config/scripts/config/util.c
+Copyright: 2002-2005, Roman Zippel <zippel@linux-m68k.org>
+  2002-2005, Sam Ravnborg <sam@ravnborg.org>
+License: GPL-2
+
+Files: berkeley-db/*
+Copyright: 1987-1994, The Regents of the University of California.
+License: BSD-4-clause
+
+Files: berkeley-db/Makefile.inc
+ lib/berkeley-db-1.xx/PORT/Makefile
+ lib/berkeley-db-1.xx/PORT/README
+ lib/berkeley-db-1.xx/PORT/aix.3.2/Makefile
+ lib/berkeley-db-1.xx/PORT/bsdi.1.0/OTHER_PATCHES
+ lib/berkeley-db-1.xx/PORT/clib/snprintf.c
+ lib/berkeley-db-1.xx/PORT/dgux.5.4/Makefile
+ lib/berkeley-db-1.xx/PORT/hpux.9.01/Makefile
+ lib/berkeley-db-1.xx/PORT/hpux.9.01/local/hp_siglist.c
+ lib/berkeley-db-1.xx/PORT/irix.4.05F/Makefile
+ lib/berkeley-db-1.xx/PORT/irix.4.05F/OTHER_PATCHES
+ lib/berkeley-db-1.xx/PORT/linux/Makefile
+ lib/berkeley-db-1.xx/PORT/linux/OTHER_PATCHES
+ lib/berkeley-db-1.xx/PORT/osf.1.0.2/Makefile
+ lib/berkeley-db-1.xx/PORT/ptx.2.0/Makefile
+ lib/berkeley-db-1.xx/PORT/ptx.2.0/OTHER_PATCHES
+ lib/berkeley-db-1.xx/PORT/sinix.5.41/Makefile
+ lib/berkeley-db-1.xx/PORT/sunos.4.1.1/Makefile
+ lib/berkeley-db-1.xx/PORT/sunos.5.2/Makefile
+ lib/berkeley-db-1.xx/PORT/ultrix.4.2/Makefile
+ lib/berkeley-db-1.xx/README
+ lib/berkeley-db-1.xx/btree/Makefile.inc
+ lib/berkeley-db-1.xx/changelog
+ lib/berkeley-db-1.xx/db/Makefile.inc
+ lib/berkeley-db-1.xx/db/tags
+ lib/berkeley-db-1.xx/docs/btree.3.ps
+ lib/berkeley-db-1.xx/docs/dbopen.3.ps
+ lib/berkeley-db-1.xx/docs/hash.3.ps
+ lib/berkeley-db-1.xx/docs/mpool.3.ps
+ lib/berkeley-db-1.xx/docs/recno.3.ps
+ lib/berkeley-db-1.xx/hash/Makefile.inc
+ lib/berkeley-db-1.xx/hash/README
+ lib/berkeley-db-1.xx/man/Makefile.inc
+ lib/berkeley-db-1.xx/mpool/Makefile.inc
+ lib/berkeley-db-1.xx/mpool/README
+ lib/berkeley-db-1.xx/mpool/mpool.libtp
+ lib/berkeley-db-1.xx/recno/Makefile.inc
+ lib/berkeley-db-1.xx/test/Makefile
+ lib/berkeley-db-1.xx/test/README
+ lib/berkeley-db-1.xx/test/hash.tests/makedb.sh
+ lib/berkeley-db-1.xx/test/hash.tests/testit
+ lib/berkeley-db-1.xx/test/run.test
+Copyright: NONE
+License: UNKNOWN
+ FIXME
+
+Files: berkeley-db/docs/hash.usenix.ps
+ lib/berkeley-db-1.xx/docs/libtp.usenix.ps
+Copyright: 1984-1985, Adobe Systems Incorporated.
+License: UNKNOWN
+ FIXME
+
+Files: micropython/lib/libm/*
+Copyright: 2005-2014 Rich Felker, et al.
+License: Expat
+
+Files: micropython/lib/libm/asinfacosf.clib/libm/ef_rem_pio2.c
+ lib/libm/ef_sqrt.c
+ lib/libm/erf_lgamma.c
+ lib/libm/fdlibm.h
+ lib/libm/kf_cos.c
+ lib/libm/kf_rem_pio2.c
+ lib/libm/kf_sin.c
+ lib/libm/kf_tan.c
+ lib/libm/sf_cos.c
+ lib/libm/sf_erf.c
+ lib/libm/sf_frexp.c
+ lib/libm/sf_ldexp.c
+ lib/libm/sf_modf.c
+ lib/libm/sf_sin.c
+ lib/libm/sf_tan.c
+ lib/libm/wf_lgamma.c
+ lib/libm/wf_tgamma.c
+ lib/libm/atan2f.c
+ lib/libm/atanf.c
+ lib/libm/libm.h
+ lib/libm/log1pf.c
+ lib/libm_dbl/*
+Copyright: 1993, 2001, 2004, Sun Microsystems, Inc.
+License: permissive0
+ Developed at SunPro, a Sun Microsystems, Inc. business. Permission to use,
+ copy, modify, and distribute this software is freely granted, provided that
+ this notice is preserved.
+
+Files: micropython/lib/libm/math.c
+Copyright: 1993, Sun Microsystems, Inc.
+  2013-2014, Damien P. George
+License: Expat
+
+Files: micropython/lib/netutils/netutils.c
+ lib/netutils/netutils.h
+Copyright: 2013-2014, Damien P. George
+  2015, Daniel Campora
+License: Expat
+
+Files: micropython/lib/timeutils/*
+Copyright: 2013-2014, Damien P. George
+  2015, Daniel Campora
+License: Expat
+
+Files: micropython/lib/tinytest/*
+Copyright: 2009-2012, Nick Mathewson
+License: BSD-3-clause
+
+Files: micropython/lib/upytesthelper/*
+Copyright: 2016-2018, Linaro Limited
+License: Expat
+
+Files: micropython/lib/utils/mpirq.c
+ lib/utils/mpirq.h
+Copyright: 2015, Daniel Campora
+  2018 Tobias Badertscher
+License: Expat
+
+Files: *
+Copyright: 2018-2020, The Pybricks Authors
+License: Expat
+
+Files: bricks/ev3dev/Makefile
+ bricks/ev3dev/mpconfigport.h
+ lib/pbio/platform/move_hub/clock.c
+Copyright: 2013-2018, Damien P. George
+License: Expat
+
+Files: lib/contiki-core/*
+Copyright: 2001-2009, Swedish Institute of Computer Science.
+Copyright: 2002-2003, Adam Dunkels.
+License: BSD-3-clause
+
+Files: lib/contiki-core/contiki-default-conf.h
+Copyright: 2012, Thingsquare, http:www.thingsquare.com/.
+License: BSD-3-clause
+
+Files: lib/contiki-core/lib/aes-128.c
+Copyright: 2011, Texas Instruments Incorporated
+License: BSD-3-clause
+
+Files: lib/contiki-core/lib/aes-128.h
+ lib/contiki-core/lib/ccm-star.c
+ lib/contiki-core/lib/ccm-star.h
+Copyright: 2013, Hasso-Plattner-Institut.
+License: BSD-3-clause
+
+Files: lib/contiki-core/lib/settings.h
+Copyright: 2013, Robert Quattlebaum
+License: BSD-3-clause
+
+Files: lib/contiki-core/lib/settings.c
+Copyright: 2013, Robert Quattlebaum.
+License: BSD-3-clause
+
+Files: lib/contiki-core/lib/trickle-timer.c
+ lib/contiki-core/lib/trickle-timer.h
+Copyright: 2012, George Oikonomou - <oikonomou@users.sourceforge.net>
+License: BSD-3-clause
+
+Files: lib/contiki-core/lib/ringbufindex.c
+ lib/contiki-core/lib/ringbufindex.h
+Copyright: 2015, SICS Swedish ICT.
+License: BSD-3-clause
+
+Files: lib/contiki-core/sys/cc-gcc.h
+Copyright: 2015, Scanimetrics - http:www.scanimetrics.com
+License: BSD-3-clause
+
+
+Files: lib/pbio/*
+Copyright: 2018-2020, The Pybricks Authors
+License: Expat
+
+Files: micropython/ports/unix/alloc.c
+Copyright: 2014, Fabian Vogt
+License: Expat
+
+Files: micropython/ports/unix/fdfile.h
+ ports/unix/modffi.c
+ ports/unix/modos.c
+ ports/unix/moduselect.c
+ ports/unix/modusocket.c
+Copyright: 2013, 2014, Damien P. George
+  2014-2017, Paul Sokolovsky
+License: Expat
+
+Files: micropython/ports/unix/modjni.c
+ ports/unix/modtermios.c
+Copyright: 2015, Paul Sokolovsky
+License: Expat
+
+Files: micropython/ports/unix/modmmap.c
+Copyright: 2013-2014, Damien P. George
+  2018, David Lechner <david@lechnology.com>
+License: Expat
+
+Files: micropython/ports/unix/modufcntl.c
+Copyright: 2019, David Lechner <david@lechnology.com>
+License: Expat
+
+Files: micropython/ports/unix/mpthreadport.c
+ ports/unix/mpthreadport.h
+Copyright: 2016, Damien P. George on behalf of Pycom Ltd
+License: Expat
+
+Files: micropython/py/asmarm.c
+ py/asmarm.h
+Copyright: 2013-2014, Damien P. George
+  2014, Fabian Vogt
+License: Expat
+
+Files: micropython/py/bc.c
+ py/builtinimport.c
+ py/frozenmod.c
+ py/modstruct.c
+ py/modsys.c
+ py/objarray.c
+ py/objarray.h
+ py/objfun.c
+ py/objgenerator.c
+ py/objint_longlong.c
+ py/objnamedtuple.c
+ py/objstr.c
+ py/objstringio.c
+ py/objstrunicode.c
+ py/objtype.c
+ py/sequence.c
+ py/stream.c
+ py/vm.c
+Copyright: 2013-2018, Damien P. George
+  2014-2017, Paul Sokolovsky
+License: Expat
+
+Files: micropython/py/modthread.c
+ py/mpthread.h
+Copyright: 2016, Damien P. George on behalf of Pycom Ltd
+License: Expat
+
+Files: micropython/py/objdeque.c
+ py/objnamedtuple.h
+ py/objpolyiter.c
+ py/ringbuf.h
+ py/stackctrl.c
+ py/stackctrl.h
+Copyright: 2014-2018, Paul Sokolovsky
+License: Expat
+
+Files: micropython/py/runtime_utils.c
+Copyright: 2015, Josef Gajdusek
+  2015, Paul Sokolovsky
+License: Expat
+
+Files: micropython/tools/dfu.py
+Copyright: 2010 Antonio Galea
+License: LGPL-3.0
+
+Files: micropython/tools/gen-cpydiff.py
+Copyright: 2016, Rami Ali
+License: Expat
+
+Files: micropython/tools/pyboard.py
+Copyright: 2014-2016, Damien P. George
+  2017, Paul Sokolovsky
+License: Expat
+
+Files: micropython/tools/pydfu.py
+Copyright: 2013-2014 Ibrahim Abdelkader <i.abdalkader@gmail.com>
+License: Expat
+
+Files: micropython/tools/upip.py
+Copyright: 2015-2018, Paul Sokolovsky
+License: Expat
+
+License: Apache-2.0
+ On Debian systems, the complete text of version 2.0 of the Apache License
+ can be found in '/usr/share/common-licenses/Apache-2.0'.
+
+License: BSD-3-clause
+ The 3-Clause BSD License
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ 3. The name of the author may not be used to endorse or promote
+    products derived from this software without specific prior
+    written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+ OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-4-clause
+ The 4-Clause BSD License
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ 3. All advertising materials mentioning features or use of this software
+    must display the following acknowledgement:
+ .
+        This product includes software developed by the University of
+        California, Berkeley and its contributors.
+ .
+ 4. Neither the name of the University nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: BSD-like-cm
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
+ .
+ 3. The name "Carnegie Mellon University" must not be used to
+    endorse or promote products derived from this software without
+    prior written permission. For permission or any legal
+    details, please contact
+      Office of Technology Transfer
+      Carnegie Mellon University
+      5000 Forbes Avenue
+      Pittsburgh, PA  15213-3890
+      (412) 268-4387, fax: (412) 268-7395
+      tech-transfer@andrew.cmu.edu
+ .
+ 4. Redistributions of any form whatsoever must retain the following
+    acknowledgment:
+    "This product includes software developed by Computing Services
+     at Carnegie Mellon University (http://www.cmu.edu/computing/)."
+ .
+ CARNEGIE MELLON UNIVERSITY DISCLAIMS ALL WARRANTIES WITH REGARD TO
+ THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS, IN NO EVENT SHALL CARNEGIE MELLON UNIVERSITY BE LIABLE
+ FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+ AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
+ OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: BSD-like-paul-m
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. The name(s) of the authors of this software must not be used to
+    endorse or promote products derived from this software without
+    prior written permission.
+ .
+ 3. Redistributions of any form whatsoever must retain the following
+    acknowledgment:
+    "This product includes software developed by Paul Mackerras
+     <paulus@samba.org>".
+ .
+ THE AUTHORS OF THIS SOFTWARE DISCLAIM ALL WARRANTIES WITH REGARD TO
+ THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS, IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY
+ SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+ AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
+ OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: BSD-like-tommi-k
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
+ .
+ 3. The name(s) of the authors of this software must not be used to
+    endorse or promote products derived from this software without
+    prior written permission.
+ .
+ 4. Redistributions of any form whatsoever must retain the following
+    acknowledgment:
+    "This product includes software developed by Tommi Komulainen
+     <Tommi.Komulainen@iki.fi>".
+ .
+ THE AUTHORS OF THIS SOFTWARE DISCLAIM ALL WARRANTIES WITH REGARD TO
+ THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS, IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY
+ SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+ AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
+ OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: BSD-like-type-1
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
+ .
+ 3. The name(s) of the authors of this software must not be used to
+    endorse or promote products derived from this software without
+    prior written permission.
+ .
+ THE AUTHORS OF THIS SOFTWARE DISCLAIM ALL WARRANTIES WITH REGARD TO
+ THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS, IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY
+ SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+ AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
+ OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: BSD-like-type-2
+ The authors hereby grant permission to use, copy, modify, distribute,
+ and license this software and its documentation for any purpose, provided
+ that existing copyright notices are retained in all copies and that this
+ notice and the following disclaimer are included verbatim in any 
+ distributions. No written agreement, license, or royalty fee is required
+ for any of the authorized uses.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE CONTRIBUTORS *AS IS* AND ANY EXPRESS OR
+ IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+ IN NO EVENT SHALL THE CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: Expat
+ The MIT License (MIT)
+ .
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+
+License: FatFs
+ FatFs module is an open source software. Redistribution and use of FatFs in
+ source and binary forms, with or without modification, are permitted provided
+ that the following condition is met:
+ .
+ 1. Redistributions of source code must retain the above copyright notice,
+    this condition and the following disclaimer.
+ .
+ This software is provided by the copyright holder and contributors "AS IS"
+ and any warranties related to this software are DISCLAIMED.
+ The copyright owner or contributors be NOT LIABLE for any damages caused
+ by use of this software.
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: GPL-3
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 3 dated June, 2007.
+ .
+ On Debian systems, the complete text of version 3 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-3'.
+
+License: GPL-3+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 3 dated June, 2007, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 3 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-3'.
+
+License: ISC
+ The ISC License (ISC)
+ .
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM
+ DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL
+ INTERNET SOFTWARE CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT,
+ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING
+ FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+ NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: LGPL-2.1
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by the
+ Free Software Foundation; version 2.1 of the License.
+ .
+ On Debian systems, the complete text of version 2.1 of the GNU Lesser
+ General Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
+
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by the
+ Free Software Foundation; version 2.1 of the License, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 2.1 of the GNU Lesser
+ General Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
+
+License: LGPL-3.0
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by the
+ Free Software Foundation; version 3 of the License.
+ .
+ On Debian systems, the complete text of version 3 of the GNU Lesser
+ General Public License can be found in `/usr/share/common-licenses/LGPL-3'.
+
+License: MCD-ST-Liberty-V2
+  MCD-ST Liberty SW License Agreement V2
+ .
+  BY INSTALLING COPYING, DOWNLOADING, ACCESSING OR OTHERWISE USING THIS SOFTWARE
+  OR ANY PART THEREOF (AND THE RELATED DOCUMENTATION) FROM STMICROELECTRONICS
+  INTERNATIONAL N.V, SWISS BRANCH AND/OR ITS AFFILIATED COMPANIES
+  (STMICROELECTRONICS), THE RECIPIENT, ON BEHALF OF HIMSELF OR HERSELF, OR ON
+  BEHALF OF ANY ENTITY BY WHICH SUCH RECIPIENT IS EMPLOYED AND/OR ENGAGED AGREES
+  TO BE BOUND BY THIS SOFTWARE LICENSE AGREEMENT.
+ .
+  Under STMicroelectronics’ intellectual property rights, the redistribution,
+  reproduction and use in source and binary forms of the software or any part
+  thereof, with or without modification, are permitted provided that the
+  following conditions are met:
+  1.  Redistribution of source code (modified or not) must retain any copyright
+      notice, this list of conditions and the disclaimer set forth below as
+      items 10 and 11.
+  2.  Redistributions in binary form, except as embedded into microcontroller or
+      microprocessor device manufactured by or for STMicroelectronics or a
+      software update for such device, must reproduce any copyright notice
+      provided with the binary code, this list of conditions, and the disclaimer
+      set forth below as items 10 and 11, in documentation and/or other
+      materials provided with the distribution.
+  3.  Neither the name of STMicroelectronics nor the names of other contributors
+      to this software may be used to endorse or promote products derived from
+      this software or part thereof without specific written permission.
+  4.  This software or any part thereof, including modifications and/or
+      derivative works of this software, must be used and execute solely and
+      exclusively on or in combination with a microcontroller or microprocessor
+      device manufactured by or for STMicroelectronics.
+  5.  No use, reproduction or redistribution of this software partially or
+      totally may be done in any manner that would subject this software to any
+      Open Source Terms. “Open Source Terms” shall mean any open source license
+      which requires as part of distribution of software that the source code of
+      such software is distributed therewith or otherwise made available, or
+      open source license that substantially complies with the Open Source
+      definition specified at www.opensource.org and any other comparable open
+      source license such as for example GNU General Public License (GPL),
+      Eclipse Public License (EPL), Apache Software License, BSD license or MIT
+      license.
+  6.  STMicroelectronics has no obligation to provide any maintenance, support
+      or updates for the software.
+  7.  The software is and will remain the exclusive property of
+      STMicroelectronics and its licensors. The recipient will not take any
+      action that jeopardizes STMicroelectronics and its licensors' proprietary
+      rights or acquire any rights in the software, except the limited rights
+      specified hereunder.
+  8.  The recipient shall comply with all applicable laws and regulations
+      affecting the use of the software or any part thereof including any
+      applicable export control law or regulation.
+  9.  Redistribution and use of this software or any part thereof other than as
+      permitted under this license is void and will automatically terminate your
+      rights under this license.
+  10. THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS"
+      AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT
+      LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+      PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL
+      PROPERTY RIGHTS, WHICH ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY
+      LAW. IN NO EVENT SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR
+      ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+      DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+      SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+      CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+      LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+      OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+      SUCH DAMAGE.
+  11. EXCEPT AS EXPRESSLY PERMITTED HEREUNDER, NO LICENSE OR OTHER RIGHTS,
+      WHETHER EXPRESS OR IMPLIED, ARE GRANTED UNDER ANY PATENT OR OTHER
+      INTELLECTUAL PROPERTY RIGHTS OF STMICROELECTRONICS OR ANY THIRD PARTY.
+
+License: MPL-1.1
+ On Debian systems, the complete text of version 1.1 of the Mozilla Public
+ License can be found in `/usr/share/common-licenses/MPL-1.1'.
+
+License: Zlib
+ The zlib License
+ .
+ This software is provided 'as-is', without any express
+ or implied warranty.  In no event will the authors be
+ held liable for any damages arising from the use of
+ this software.
+ .
+ Permission is granted to anyone to use this software
+ for any purpose, including commercial applications,
+ and to alter it and redistribute it freely, subject to
+ the following restrictions:
+ .
+ 1. The origin of this software must not be
+    misrepresented; you must not claim that you
+    wrote the original software. If you use this
+    software in a product, an acknowledgment in
+    the product documentation would be appreciated
+    but is not required.
+ .
+ 2. Altered source versions must be plainly marked
+    as such, and must not be misrepresented as
+    being the original software.
+ .
+ 3. This notice may not be removed or altered from
+    any source distribution.
