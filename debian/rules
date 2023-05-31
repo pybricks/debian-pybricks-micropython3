@@ -26,7 +26,7 @@ override_dh_auto_build:
 		ln -sr micropython-lib micropython/lib/; \
 	fi
 	make -C micropython/mpy-cross
-	make -C bricks/ev3dev
+	make -C bricks/ev3dev 'CFLAGS_EXTRA=-DMICROPY_PY_SYS_PATH_DEFAULT="\".frozen:~/.pybricks-micropython3/lib\""'
 
 override_dh_auto_install:
 	install -D micropython/mpy-cross/build/mpy-cross debian/tmp/usr/bin/pybricks-mpy-cross3
