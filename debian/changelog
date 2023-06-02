@@ -1,3 +1,10 @@
+pybricks-micropython3 (3.3.0~b6-1) stretch; urgency=medium
+
+  * change default sys.path to ".frozen:~/.pybricks-micropython3/lib"
+  * New upstream version 3.3.0~b6
+
+ -- David Lechner <david@lechnology.com>  Fri, 02 Jun 2023 12:12:44 -0500
+
 pybricks-micropython3 (3.3.0~b5-1) stretch; urgency=medium
 
   * New upstream version 3.3.0~b5
