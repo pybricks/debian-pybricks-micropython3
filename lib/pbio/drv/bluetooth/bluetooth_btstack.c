@@ -22,6 +22,7 @@
 #include "bluetooth_btstack_run_loop_contiki.h"
 #include "bluetooth_btstack.h"
 #include "genhdr/pybricks_service.h"
+#include "hci_transport_h4.h"
 #include "pybricks_service_server.h"
 
 #ifdef PBDRV_CONFIG_BLUETOOTH_BTSTACK_HUB_KIND
@@ -252,10 +253,8 @@ static void handle_gatt_client_event(uint8_t packet_type, uint16_t channel, uint
 
         case GATT_EVENT_QUERY_COMPLETE:
             if (handset.con_state == CON_STATE_WAIT_DISCOVER_SERVICES) {
-                // TODO: remove cast on lwp3_characteristic_uuid after
-                // https://github.com/bluekitchen/btstack/pull/359
                 handset.btstack_error = gatt_client_discover_characteristics_for_service_by_uuid128(
-                    handle_gatt_client_event, handset.con_handle, &handset.lwp3_service, (uint8_t *)pbio_lwp3_hub_char_uuid);
+                    handle_gatt_client_event, handset.con_handle, &handset.lwp3_service, pbio_lwp3_hub_char_uuid);
                 if (handset.btstack_error == ERROR_CODE_SUCCESS) {
                     handset.con_state = CON_STATE_WAIT_DISCOVER_CHARACTERISTICS;
                 } else {
@@ -463,7 +462,7 @@ void pbdrv_bluetooth_init(void) {
     btstack_memory_init();
     btstack_run_loop_init(pbdrv_bluetooth_btstack_run_loop_contiki_get_instance());
 
-    hci_init(hci_transport_h4_instance(pdata->uart_block_instance()), &config);
+    hci_init(hci_transport_h4_instance_for_uart(pdata->uart_block_instance()), &config);
     hci_set_chipset(pdata->chipset_instance());
     hci_set_control(pdata->control_instance());
 
@@ -737,10 +736,14 @@ void pbdrv_bluetooth_disconnect_remote(void) {
     }
 }
 
-void pbdrv_bluetooth_start_broadcasting(pbio_task_t *task, pbdrv_bluetooth_value_t *value) {
+static PT_THREAD(start_broadcasting_task(struct pt *pt, pbio_task_t *task)) {
+    pbdrv_bluetooth_value_t *value = task->context;
+
+    PT_BEGIN(pt);
+
     if (value->size > LE_ADVERTISING_DATA_SIZE) {
         task->status = PBIO_ERROR_INVALID_ARG;
-        return;
+        PT_EXIT(pt);
     }
 
     bd_addr_t null_addr = { };
@@ -759,6 +762,12 @@ void pbdrv_bluetooth_start_broadcasting(pbio_task_t *task, pbdrv_bluetooth_value
 
     // REVISIT: use callback to actually wait for start?
     task->status = PBIO_SUCCESS;
+
+    PT_END(pt);
+}
+
+void pbdrv_bluetooth_start_broadcasting(pbio_task_t *task, pbdrv_bluetooth_value_t *value) {
+    start_task(task, start_broadcasting_task, value);
 }
 
 void pbdrv_bluetooth_stop_broadcasting(void) {
@@ -768,7 +777,11 @@ void pbdrv_bluetooth_stop_broadcasting(void) {
     }
 }
 
-void pbdrv_bluetooth_start_observing(pbio_task_t *task, pbdrv_bluetooth_start_observing_callback_t callback) {
+static PT_THREAD(start_observing_task(struct pt *pt, pbio_task_t *task)) {
+    pbdrv_bluetooth_start_observing_callback_t callback = task->context;
+
+    PT_BEGIN(pt);
+
     observe_callback = callback;
 
     if (!is_observing) {
@@ -778,6 +791,12 @@ void pbdrv_bluetooth_start_observing(pbio_task_t *task, pbdrv_bluetooth_start_ob
 
     // REVISIT: use callback to actually wait for start?
     task->status = PBIO_SUCCESS;
+
+    PT_END(pt);
+}
+
+void pbdrv_bluetooth_start_observing(pbio_task_t *task, pbdrv_bluetooth_start_observing_callback_t callback) {
+    start_task(task, start_observing_task, callback);
 }
 
 void pbdrv_bluetooth_stop_observing(void) {

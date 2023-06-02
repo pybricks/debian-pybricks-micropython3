@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2019-2022 The Pybricks Authors
+// Copyright (c) 2019-2023 The Pybricks Authors
 
 #include <assert.h>
 #include <stdbool.h>
@@ -391,17 +391,14 @@ static PT_THREAD(test_boost_color_distance_sensor(struct pt *pt)) {
     // static struct etimer timer;
     int err;
 
-    PT_WAIT_WHILE(pt, ({
-        pbio_test_clock_tick(1);
-        (err = pbio_iodev_set_mode_begin(iodev, 1)) == PBIO_ERROR_AGAIN;
-    }));
+    err = pbio_uartdev_set_mode(iodev, 1);
     tt_uint_op(err, ==, PBIO_SUCCESS);
 
     // wait for mode change message to be sent
     SIMULATE_TX_MSG(msg87);
 
     // should be blocked since data with new mode has not been received yet
-    tt_uint_op(pbio_iodev_set_mode_end(iodev), ==, PBIO_ERROR_AGAIN);
+    tt_uint_op(pbio_uartdev_is_ready(iodev), ==, PBIO_ERROR_AGAIN);
     tt_uint_op(iodev->mode, !=, 1);
 
     // data message with new mode
@@ -409,17 +406,16 @@ static PT_THREAD(test_boost_color_distance_sensor(struct pt *pt)) {
 
     PT_WAIT_WHILE(pt, ({
         pbio_test_clock_tick(1);
-        (err = pbio_iodev_set_mode_end(iodev)) == PBIO_ERROR_AGAIN;
+        (err = pbio_uartdev_is_ready(iodev)) == PBIO_ERROR_AGAIN;
     }));
     tt_uint_op(err, ==, PBIO_SUCCESS);
     tt_uint_op(iodev->mode, ==, 1);
 
 
     // also do mode 8 since it requires the extended mode flag
-
     PT_WAIT_WHILE(pt, ({
         pbio_test_clock_tick(1);
-        (err = pbio_iodev_set_mode_begin(iodev, 8)) == PBIO_ERROR_AGAIN;
+        (err = pbio_uartdev_set_mode(iodev, 8)) == PBIO_ERROR_AGAIN;
     }));
     tt_uint_op(err, ==, PBIO_SUCCESS);
 
@@ -427,7 +423,7 @@ static PT_THREAD(test_boost_color_distance_sensor(struct pt *pt)) {
     SIMULATE_TX_MSG(msg89);
 
     // should be blocked since data with new mode has not been received yet
-    tt_uint_op(pbio_iodev_set_mode_end(iodev), ==, PBIO_ERROR_AGAIN);
+    tt_uint_op(pbio_uartdev_is_ready(iodev), ==, PBIO_ERROR_AGAIN);
     tt_uint_op(iodev->mode, !=, 8);
 
     // send data message with new mode
@@ -436,7 +432,7 @@ static PT_THREAD(test_boost_color_distance_sensor(struct pt *pt)) {
 
     PT_WAIT_WHILE(pt, ({
         pbio_test_clock_tick(1);
-        (err = pbio_iodev_set_mode_end(iodev)) == PBIO_ERROR_AGAIN;
+        (err = pbio_uartdev_is_ready(iodev)) == PBIO_ERROR_AGAIN;
     }));
     tt_uint_op(err, ==, PBIO_SUCCESS);
     tt_uint_op(iodev->mode, ==, 8);
@@ -997,9 +993,8 @@ pbio_error_t pbdrv_uart_get(uint8_t id, pbdrv_uart_dev_t **uart_dev) {
     return PBIO_SUCCESS;
 }
 
-pbio_error_t pbdrv_uart_set_baud_rate(pbdrv_uart_dev_t *uart, uint32_t baud) {
+void pbdrv_uart_set_baud_rate(pbdrv_uart_dev_t *uart, uint32_t baud) {
     test_uart_dev.baud = baud;
-    return PBIO_SUCCESS;
 }
 
 void pbdrv_uart_flush(pbdrv_uart_dev_t *uart_dev) {

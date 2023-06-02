@@ -4,6 +4,24 @@
 
 ## [Unreleased]
 
+## [3.3.0b6] - 2023-06-02
+
+### Added
+- Enabled builtin `set` type (except on BOOST Move hub) ([support#402]).
+
+### Changed
+- Updated BTStack to v1.5.5.
+
+### Fixed
+- Fixed BLE broadcast not working on City hub.
+- Fixed crash on BTStack hubs when program stopped during call to `ble.broadcast()`.
+- Fixed BLE broadcast not working on Technic hub when not connected ([support#1086]).
+- Fixed delayed sensor sync on boot on City hub ([support#747]).
+
+[support#402]: https://github.com/pybricks/support/issues/402
+[support#747]: https://github.com/pybricks/support/issues/747
+[support#1086]: https://github.com/pybricks/support/issues/1086
+
 ## [3.3.0b5] - 2023-05-16
 
 ### Added
@@ -609,9 +627,10 @@ Prerelease changes are documented at [support#48].
 
 
 <!-- diff links for headers -->
-[Unreleased]: https://github.com/pybricks/pybricks-micropython/compare/v3.3.0b5...HEAD
+[Unreleased]: https://github.com/pybricks/pybricks-micropython/compare/v3.3.0b6...HEAD
+[3.3.0b6]: https://github.com/pybricks/pybricks-micropython/compare/v3.3.0b4...v3.3.0b6
 [3.3.0b5]: https://github.com/pybricks/pybricks-micropython/compare/v3.3.0b4...v3.3.0b5
-[3.3.0b3]: https://github.com/pybricks/pybricks-micropython/compare/v3.3.0b3...v3.3.0b4
+[3.3.0b4]: https://github.com/pybricks/pybricks-micropython/compare/v3.3.0b3...v3.3.0b4
 [3.3.0b3]: https://github.com/pybricks/pybricks-micropython/compare/v3.3.0b2...v3.3.0b3
 [3.3.0b2]: https://github.com/pybricks/pybricks-micropython/compare/v3.3.0b1...v3.3.0b2
 [3.3.0b1]: https://github.com/pybricks/pybricks-micropython/compare/v3.2.2...v3.3.0b1

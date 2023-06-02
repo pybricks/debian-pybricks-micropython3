@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2022 The Pybricks Authors
+// Copyright (c) 2022-2023 The Pybricks Authors
 
 // LPF2 Counter driver
 //
@@ -18,6 +18,7 @@
 #include <pbdrv/ioport.h>
 #include <pbio/error.h>
 #include <pbio/iodev.h>
+#include <pbio/uartdev.h>
 #include <pbio/util.h>
 
 #include "counter.h"
@@ -66,13 +67,10 @@ static pbio_error_t pbdrv_counter_lpf2_update(pbdrv_counter_dev_t *dev) {
     uint8_t mode_id = priv->supports_abs_angle ?
         PBIO_IODEV_MODE_PUP_ABS_MOTOR__CALIB:
         PBIO_IODEV_MODE_PUP_REL_MOTOR__POS;
-    if (iodev->mode != mode_id) {
-        return PBIO_ERROR_INVALID_OP;
-    }
 
     // Get pointer to LPF2 data buffer.
-    uint8_t *data;
-    err = pbio_iodev_get_data(iodev, &data);
+    void *data;
+    err = pbio_uartdev_get_data(iodev, mode_id, &data);
     if (err != PBIO_SUCCESS) {
         return err;
     }

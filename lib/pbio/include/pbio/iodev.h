@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2018-2022 The Pybricks Authors
+// Copyright (c) 2018-2023 The Pybricks Authors
 
 /**
  * @addtogroup Iodev pbio/iodev: Input and output devices
@@ -545,30 +545,11 @@ typedef struct _pbio_iodev_t pbio_iodev_t;
 
 /** @cond INTERNAL */
 
-/**
- * Device-specific communication functions.
- */
-typedef struct {
-    pbio_error_t (*set_mode_begin)(pbio_iodev_t *iodev, uint8_t mode);
-    pbio_error_t (*set_mode_end)(pbio_iodev_t *iodev);
-    void (*set_mode_cancel)(pbio_iodev_t *iodev);
-    pbio_error_t (*set_data_begin)(pbio_iodev_t *iodev, const uint8_t *data);
-    pbio_error_t (*set_data_end)(pbio_iodev_t *iodev);
-    void (*set_data_cancel)(pbio_iodev_t *iodev);
-    pbio_error_t (*write_begin)(pbio_iodev_t *iodev, const uint8_t *data, uint8_t size);
-    pbio_error_t (*write_end)(pbio_iodev_t *iodev);
-    void (*write_cancel)(pbio_iodev_t *iodev);
-} pbio_iodev_ops_t;
-
 struct _pbio_iodev_t {
     /**
      * Pointer to the mode info for this device.
      */
     const pbio_iodev_info_t *info;
-    /**
-     * Pointer to the device-specific communication functions.
-     */
-    const pbio_iodev_ops_t *ops;
     /**
      * The port the device is attached to.
      */
@@ -590,16 +571,6 @@ struct _pbio_iodev_t {
 
 size_t pbio_iodev_size_of(pbio_iodev_data_type_t type);
 pbio_error_t pbio_iodev_get_data_format(pbio_iodev_t *iodev, uint8_t mode, uint8_t *len, pbio_iodev_data_type_t *type);
-pbio_error_t pbio_iodev_get_data(pbio_iodev_t *iodev, uint8_t **data);
-pbio_error_t pbio_iodev_set_mode_begin(pbio_iodev_t *iodev, uint8_t mode);
-pbio_error_t pbio_iodev_set_mode_end(pbio_iodev_t *iodev);
-void pbio_iodev_set_mode_cancel(pbio_iodev_t *iodev);
-pbio_error_t pbio_iodev_set_data_begin(pbio_iodev_t *iodev, uint8_t mode, const uint8_t *data);
-pbio_error_t pbio_iodev_set_data_end(pbio_iodev_t *iodev);
-void pbio_iodev_set_data_cancel(pbio_iodev_t *iodev);
-pbio_error_t pbio_iodev_write_begin(pbio_iodev_t *iodev, const uint8_t *data, uint8_t size);
-pbio_error_t pbio_iodev_write_end(pbio_iodev_t *iodev);
-void pbio_iodev_write_cancel(pbio_iodev_t *iodev);
 
 #endif // _PBIO_IODEV_H_
 
