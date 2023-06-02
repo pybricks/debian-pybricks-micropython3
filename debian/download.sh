@@ -3,11 +3,11 @@
 set -e
 
 # debian version - be sure to include `~` in beta versions!
-version="3.3.0~b5"
+version="3.3.0~b6"
 
 # note: mk-origtargz filters files based on Files-Excluded in ./copyright
 
-wget https://github.com/pybricks/pybricks-micropython/archive/refs/tags/v3.3.0b5.tar.gz -O ../pybricks-micropython_${version}.orig.tar.gz
+wget https://github.com/pybricks/pybricks-micropython/archive/refs/tags/v3.3.0b6.tar.gz -O ../pybricks-micropython_${version}.orig.tar.gz
 mk-origtargz --rename ../pybricks-micropython_${version}.orig.tar.gz
 
 wget https://github.com/pybricks/micropython/archive/refs/tags/v1.20.0-23-g6c633a8dd.tar.gz -O ../pybricks-micropython_${version}.orig-micropython.tar.gz
