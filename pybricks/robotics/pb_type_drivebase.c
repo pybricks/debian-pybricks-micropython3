@@ -16,13 +16,17 @@
 #include <pybricks/common.h>
 #include <pybricks/parameters.h>
 #include <pybricks/robotics.h>
+#include <pybricks/tools.h>
+#include <pybricks/tools/pb_type_awaitable.h>
 
 #include <pybricks/util_mp/pb_kwarg_helper.h>
 #include <pybricks/util_mp/pb_obj_helper.h>
 #include <pybricks/util_pb/pb_error.h>
 
+typedef struct _pb_type_DriveBase_obj_t pb_type_DriveBase_obj_t;
+
 // pybricks.robotics.DriveBase class object
-typedef struct _pb_type_DriveBase_obj_t {
+struct _pb_type_DriveBase_obj_t {
     mp_obj_base_t base;
     pbio_drivebase_t *db;
     int32_t initial_distance;
@@ -31,7 +35,8 @@ typedef struct _pb_type_DriveBase_obj_t {
     mp_obj_t heading_control;
     mp_obj_t distance_control;
     #endif
-} pb_type_DriveBase_obj_t;
+    mp_obj_t awaitables;
+};
 
 // pybricks.robotics.DriveBase.reset
 STATIC mp_obj_t pb_type_DriveBase_reset(mp_obj_t self_in) {
@@ -80,16 +85,41 @@ STATIC mp_obj_t pb_type_DriveBase_make_new(const mp_obj_type_t *type, size_t n_a
     // Reset drivebase state
     pb_type_DriveBase_reset(MP_OBJ_FROM_PTR(self));
 
+    // List of awaitables associated with this drivebase. By keeping track,
+    // we can cancel them as needed when a new movement is started.
+    self->awaitables = mp_obj_new_list(0, NULL);
+
     return MP_OBJ_FROM_PTR(self);
 }
 
-STATIC void wait_for_completion_drivebase(pbio_drivebase_t *db) {
-    while (!pbio_drivebase_is_done(db)) {
-        mp_hal_delay_ms(5);
-    }
-    if (!pbio_drivebase_update_loop_is_running(db)) {
+STATIC bool pb_type_DriveBase_test_completion(mp_obj_t self_in, uint32_t end_time) {
+
+    pb_type_DriveBase_obj_t *self = MP_OBJ_TO_PTR(self_in);
+
+    // Handle I/O exceptions like port unplugged.
+    if (!pbio_drivebase_update_loop_is_running(self->db)) {
         pb_assert(PBIO_ERROR_NO_DEV);
     }
+
+    // Get completion state.
+    return pbio_drivebase_is_done(self->db);
+}
+
+STATIC void pb_type_DriveBase_cancel(mp_obj_t self_in) {
+    pb_type_DriveBase_obj_t *self = MP_OBJ_TO_PTR(self_in);
+    pb_assert(pbio_drivebase_stop(self->db, PBIO_CONTROL_ON_COMPLETION_COAST));
+}
+
+// All drive base methods use the same kind of completion awaitable.
+STATIC mp_obj_t await_or_wait(pb_type_DriveBase_obj_t *self) {
+    return pb_type_awaitable_await_or_wait(
+        MP_OBJ_FROM_PTR(self),
+        self->awaitables,
+        pb_type_awaitable_end_time_none,
+        pb_type_DriveBase_test_completion,
+        pb_type_awaitable_return_none,
+        pb_type_DriveBase_cancel,
+        PB_TYPE_AWAITABLE_OPT_CANCEL_ALL);
 }
 
 // pybricks.robotics.DriveBase.straight
@@ -105,11 +135,12 @@ STATIC mp_obj_t pb_type_DriveBase_straight(size_t n_args, const mp_obj_t *pos_ar
 
     pb_assert(pbio_drivebase_drive_straight(self->db, distance, then));
 
-    if (mp_obj_is_true(wait_in)) {
-        wait_for_completion_drivebase(self->db);
+    // Old way to do parallel movement is to start and not wait on anything.
+    if (!mp_obj_is_true(wait_in)) {
+        return mp_const_none;
     }
-
-    return mp_const_none;
+    // Handle completion by awaiting or blocking.
+    return await_or_wait(self);
 }
 STATIC MP_DEFINE_CONST_FUN_OBJ_KW(pb_type_DriveBase_straight_obj, 1, pb_type_DriveBase_straight);
 
@@ -127,11 +158,12 @@ STATIC mp_obj_t pb_type_DriveBase_turn(size_t n_args, const mp_obj_t *pos_args, 
     // Turning in place is done as a curve with zero radius and a given angle.
     pb_assert(pbio_drivebase_drive_curve(self->db, 0, angle, then));
 
-    if (mp_obj_is_true(wait_in)) {
-        wait_for_completion_drivebase(self->db);
+    // Old way to do parallel movement is to start and not wait on anything.
+    if (!mp_obj_is_true(wait_in)) {
+        return mp_const_none;
     }
-
-    return mp_const_none;
+    // Handle completion by awaiting or blocking.
+    return await_or_wait(self);
 }
 STATIC MP_DEFINE_CONST_FUN_OBJ_KW(pb_type_DriveBase_turn_obj, 1, pb_type_DriveBase_turn);
 
@@ -150,11 +182,12 @@ STATIC mp_obj_t pb_type_DriveBase_curve(size_t n_args, const mp_obj_t *pos_args,
 
     pb_assert(pbio_drivebase_drive_curve(self->db, radius, angle, then));
 
-    if (mp_obj_is_true(wait_in)) {
-        wait_for_completion_drivebase(self->db);
+    // Old way to do parallel movement is to start and not wait on anything.
+    if (!mp_obj_is_true(wait_in)) {
+        return mp_const_none;
     }
-
-    return mp_const_none;
+    // Handle completion by awaiting or blocking.
+    return await_or_wait(self);
 }
 STATIC MP_DEFINE_CONST_FUN_OBJ_KW(pb_type_DriveBase_curve_obj, 1, pb_type_DriveBase_curve);
 
@@ -169,16 +202,24 @@ STATIC mp_obj_t pb_type_DriveBase_drive(size_t n_args, const mp_obj_t *pos_args,
     mp_int_t speed = pb_obj_get_int(speed_in);
     mp_int_t turn_rate = pb_obj_get_int(turn_rate_in);
 
-    pb_assert(pbio_drivebase_drive_forever(self->db, speed, turn_rate));
+    // Cancel awaitables but not hardware. Drive forever will handle this.
+    pb_type_awaitable_update_all(self->awaitables, PB_TYPE_AWAITABLE_OPT_CANCEL_ALL);
 
+    pb_assert(pbio_drivebase_drive_forever(self->db, speed, turn_rate));
     return mp_const_none;
 }
 STATIC MP_DEFINE_CONST_FUN_OBJ_KW(pb_type_DriveBase_drive_obj, 1, pb_type_DriveBase_drive);
 
 // pybricks.robotics.DriveBase.stop
 STATIC mp_obj_t pb_type_DriveBase_stop(mp_obj_t self_in) {
+
+    // Cancel awaitables.
     pb_type_DriveBase_obj_t *self = MP_OBJ_TO_PTR(self_in);
-    pb_assert(pbio_drivebase_stop(self->db, PBIO_CONTROL_ON_COMPLETION_COAST));
+    pb_type_awaitable_update_all(self->awaitables, PB_TYPE_AWAITABLE_OPT_CANCEL_ALL);
+
+    // Stop hardware.
+    pb_type_DriveBase_cancel(self_in);
+
     return mp_const_none;
 }
 MP_DEFINE_CONST_FUN_OBJ_1(pb_type_DriveBase_stop_obj, pb_type_DriveBase_stop);

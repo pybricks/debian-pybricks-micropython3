@@ -13,13 +13,16 @@
 #include <pbio/button.h>
 #include <pbio/color.h>
 #include <pbio/light.h>
+#include <pbio/iodev.h>
 
 #include "py/obj.h"
 
 #include <pybricks/util_mp/pb_obj_helper.h>
-#include <pybricks/util_pb/pb_device.h>
 
 #include <pybricks/parameters.h>
+#include <pybricks/pupdevices.h>
+#include <pybricks/tools.h>
+#include <pybricks/tools/pb_type_awaitable.h>
 
 void pb_package_pybricks_init(bool import_all);
 void pb_package_pybricks_deinit(void);
@@ -40,8 +43,9 @@ mp_obj_t pb_type_Charger_obj_new(void);
  * Device-specific callback for controlling a color light.
  * @param [in]  context     The instance-specific context.
  * @param [in]  hsv         The HSV color for the light.
+ * @return                  None or awaitable.
  */
-typedef void (*pb_type_ColorLight_on_t)(void *context, const pbio_color_hsv_t *hsv);
+typedef mp_obj_t (*pb_type_ColorLight_on_t)(void *context, const pbio_color_hsv_t *hsv);
 
 // pybricks._common.ColorLight()
 mp_obj_t pb_type_ColorLight_external_obj_new(void *context, pb_type_ColorLight_on_t on);
@@ -49,7 +53,7 @@ mp_obj_t common_ColorLight_internal_obj_new(pbio_color_light_t *light);
 
 #if PYBRICKS_PY_COMMON_LIGHT_ARRAY
 // pybricks._common.LightArray()
-mp_obj_t common_LightArray_obj_make_new(pb_device_t *pbdev, uint8_t light_mode, uint8_t number_of_lights);
+mp_obj_t common_LightArray_obj_make_new(pb_pupdevices_obj_base_t *sensor, uint8_t light_mode, uint8_t number_of_lights);
 #endif
 
 #if PYBRICKS_PY_COMMON_LIGHT_MATRIX
@@ -95,8 +99,10 @@ mp_obj_t pb_type_MotorModel_obj_make_new(pbio_observer_t *observer);
 mp_obj_t common_Logger_obj_make_new(pbio_log_t *log, uint8_t num_values);
 #endif
 
+typedef struct _common_Motor_obj_t common_Motor_obj_t;
+
 // pybricks._common.Motor()
-typedef struct _common_Motor_obj_t {
+struct _common_Motor_obj_t {
     mp_obj_base_t base;
     pbio_servo_t *srv;
     #if PYBRICKS_PY_COMMON_MOTOR_MODEL
@@ -109,7 +115,8 @@ typedef struct _common_Motor_obj_t {
     mp_obj_t logger;
     #endif
     pbio_port_id_t port;
-} common_Motor_obj_t;
+    mp_obj_t awaitables;
+};
 
 extern const mp_obj_type_t pb_type_Motor;
 
@@ -124,7 +131,6 @@ extern const mp_obj_type_t pb_type_DCMotor;
 
 // Nonstatic objects shared between Motor and DCMotor
 void common_DCMotor_print(const mp_print_t *print, mp_obj_t self_in, mp_print_kind_t kind);
-MP_DECLARE_CONST_FUN_OBJ_1(common_DCMotor_close_obj);
 MP_DECLARE_CONST_FUN_OBJ_KW(common_DCMotor_duty_obj);
 MP_DECLARE_CONST_FUN_OBJ_1(common_DCMotor_stop_obj);
 MP_DECLARE_CONST_FUN_OBJ_1(common_DCMotor_brake_obj);
